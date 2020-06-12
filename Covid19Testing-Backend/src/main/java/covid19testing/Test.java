@@ -7,7 +7,7 @@ public class Test{
         public boolean getResult() {
                 return this.result;
         }
-        public boolean setResult(boolean result){
+        public void setResult(boolean result){
                 this.result = result;
         }
 	
