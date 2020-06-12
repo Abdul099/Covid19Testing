@@ -1,5 +1,8 @@
 package covid19testing;
-  
+
+import java.sql.Date;
+import java.sql.Time;
+
 public class Appointment{
 
 	private Date date;

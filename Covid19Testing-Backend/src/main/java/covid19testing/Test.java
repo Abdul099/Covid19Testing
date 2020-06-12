@@ -1,5 +1,8 @@
 package covid19testing;
-  
+
+import java.sql.Date;
+import java.sql.Time;
+
 public class Test{
 
 	private boolean result;
@@ -43,4 +46,4 @@ public class Test{
                 this.time = time;
         }
 }
-~   
+

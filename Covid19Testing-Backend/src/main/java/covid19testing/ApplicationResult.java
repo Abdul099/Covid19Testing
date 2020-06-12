@@ -1,3 +1,3 @@
 package covid19testing;
 
-public enum ApplicationResult { Test, Done Test for now }
+public enum ApplicationResult { Test, DoneTestfornow }
