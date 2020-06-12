@@ -3,6 +3,14 @@ package covid19testing;
 public class Patient{
 	
 	private String name;	
+	private String surname;
+	private String address;
+	private String city;
+	private String province;	
+	private int insurance;
+	private String travel;
+	private String preCondition;
+	private String medication;	
 
 	public String getName() {
 		return this.name;
@@ -10,8 +18,6 @@ public class Patient{
 	public void setName(String name){
 		this.name = name;	
 	}
-	
-	private String surname;
 
         public String getSurame() {
                 return this.surname;
@@ -20,16 +26,12 @@ public class Patient{
                 this.surname = surname;
         }
 
-	private String address;
-
         public String getAddress() {
                 return this.address;
         }
         public void setAddress(String addres){
                 this.adress = adress;
         }
-
-	private String city;
 
         public String getCity() {
                 return this.city;
@@ -38,8 +40,6 @@ public class Patient{
                 this.City = city;
         }
 	
-	private String province;
-
         public String getProvince() {
                 return this.province;
         }
@@ -47,16 +47,12 @@ public class Patient{
                 this.province = province;
         }
 
-	private int insurance;
-
         public int getInsurance() {
                 return this.insurance;
         }
         public void setInsurance(int insurance){
                 this.insurance = insurance;
         }	
-	
-	private String travel;
 
         public String getTravel() {
                 return this.travel;
@@ -65,16 +61,12 @@ public class Patient{
                 this.travel = travel;
         }	
 
-	private String preCondition;
-
         public String getPreCondition() {
                 return this.preCondition;
         }
         public void setPreCondition(String preCondition){
                 this.preCondition = preCondition;
-        }
-	
-	private String medication;
+     	}
 
         public String getMedication() {
                 return this.medication;
