@@ -15,7 +15,7 @@ public class Covid19TestingApplication {
 
   @RequestMapping("/")
   public String greeting(){
-    return "Hello world!";
+    return "Bonjour! Hi! Marhaba! Merhaba!";
   }
 
 }
