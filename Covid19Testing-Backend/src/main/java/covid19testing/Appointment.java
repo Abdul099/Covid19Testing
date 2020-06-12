@@ -2,14 +2,15 @@ package covid19testing;
   
 public class Appointment{
 
-public Date getDate() {
+	private Date date;
+	private Time time;
+
+	public Date getDate() {
                 return this.date;
         }
         public void setDate(Date date){
                 this.date = date;
         }
-
-        private Time time;
 
         public Time getTime() {
                 return this.time;
@@ -18,5 +19,4 @@ public Date getDate() {
                 this.time = time;
         }
 
-//idk either
 }
