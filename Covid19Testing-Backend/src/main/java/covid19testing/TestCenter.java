@@ -3,6 +3,9 @@ package covid19testing;
 public class TestCenter{
 
         private String name;
+	private String address;
+	private String city;
+	private String province;
 
         public String getName() {
                 return this.name;
@@ -11,8 +14,6 @@ public class TestCenter{
                 this.name = name;
         }
 
-        private String address;
-
         public String getAddress() {
                 return this.address;
         }
@@ -20,16 +21,12 @@ public class TestCenter{
                 this.adress = adress;
         }
 
-        private String city;
-
         public String getCity() {
                 return this.city;
         }
         public void setCity(String city){
                 this.City = city;
         }
-
-        private String province;
 
         public String getProvince() {
                 return this.province;
