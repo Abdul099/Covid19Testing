@@ -29,7 +29,7 @@ public class Patient{
         public String getAddress() {
                 return this.address;
         }
-        public void setAddress(String addres){
+        public void setAddress(String address){
                 this.adress = adress;
         }
 
@@ -37,7 +37,7 @@ public class Patient{
                 return this.city;
         }
         public void setCity(String city){
-                this.City = city;
+                this.city = city;
         }
 	
         public String getProvince() {
