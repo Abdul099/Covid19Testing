@@ -3,6 +3,10 @@ package covid19testing;
 public class ApplicationForTest{
 
         private int fever;
+	private boolean cough;
+	private boolean shortnessBreath;
+	private String otherSymptoms;
+	private boolean result;
 
         public int getFever() {
                 return this.fever;
@@ -11,16 +15,12 @@ public class ApplicationForTest{
                 this.fever = fever;
         }
 	
-	private boolean cough;
-
         public boolean getCough() {
                 return this.cough;
         }
         public void setCough(boolean cough){
                 this.cough = cough;
         }
-
-	private boolean shortnessBreath;
 
         public boolean getShortnessBreath() {
                 return this.shortnessBreath;
@@ -29,8 +29,6 @@ public class ApplicationForTest{
                 this.shortnessBreath = shortnessBreath;
         }
 
-	private String otherSymptoms;
-
         public String getOtherSymptoms() {
                 return this.otherSymptoms;
         }
@@ -38,8 +36,6 @@ public class ApplicationForTest{
                 this.otherSymptoms = otherSymptoms;
         }
 	
-	private boolean result;
-
         public boolean getResult() {
                 return this.result;
         }
