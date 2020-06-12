@@ -7,6 +7,7 @@ public class Appointment{
 
 	private Date date;
 	private Time time;
+	getPatient();
 
 	public Date getDate() {
                 return this.date;
