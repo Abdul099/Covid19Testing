@@ -2,6 +2,7 @@ package covid19testing.model;
 
 import java.util.Set;
 
+@Entity
 public class TestCenter{
 
         private String name;
