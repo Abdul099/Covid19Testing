@@ -1,8 +1,10 @@
 package covid19testing.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.UUID;
 
 @Entity
 public class Appointment{
@@ -11,6 +13,7 @@ public class Appointment{
 	private Time time;
 	private Patient patient;
 	private TestCenter testCenter;
+	private String appointmentID;
 
 	public Date getDate() {
                 return this.date;
@@ -40,5 +43,16 @@ public class Appointment{
 
     public void setTestCenter(TestCenter testCenter) {
         this.testCenter = testCenter;
+    }
+
+    public void setTransactionID(String value) {
+        this.appointmentID = value;
+    }
+    public void setTransactionID() {
+        this.appointmentID = UUID.randomUUID().toString();
+    }
+    @Id
+    public String getTransactionID() {
+        return this.appointmentID;
     }
 }

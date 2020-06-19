@@ -1,6 +1,8 @@
 package covid19testing.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class Application{
@@ -11,6 +13,7 @@ public class Application{
 	private String otherSymptoms;
 	private boolean result;
 	private Patient patient;
+	private String applicationID;
 
         public int getFever() {
                 return this.fever;
@@ -54,4 +57,15 @@ public class Application{
         public void setPatient(Patient patient) {
                 this.patient = patient;
         }
+
+        public void setTransactionID(String value) {
+        this.applicationID = value;
+    }
+    public void setTransactionID() {
+        this.applicationID = UUID.randomUUID().toString();
+    }
+    @Id
+    public String getTransactionID() {
+        return this.applicationID;
+    }
 }
