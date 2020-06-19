@@ -1,4 +1,4 @@
-package covid19testing;
+package covid19testing.model;
 
 import java.sql.Date;
 import java.sql.Time;
