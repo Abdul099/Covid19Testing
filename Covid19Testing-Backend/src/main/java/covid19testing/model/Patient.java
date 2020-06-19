@@ -1,6 +1,7 @@
 package covid19testing.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Set;
 
 @Entity
@@ -15,8 +16,8 @@ public class Patient{
 	private String travel;
 	private String preCondition;
 	private String medication;	
-    	private Set<Application> applications;
-    	private Set<Appointment>  appointments;
+	private Set<Application> applications;
+	private Set<Appointment>  appointments;
    	private Set<Test> tests;
 
 	public String getName() {
@@ -54,6 +55,7 @@ public class Patient{
                 this.province = province;
         }
 
+        @Id
         public int getInsurance() {
                 return this.insurance;
         }
