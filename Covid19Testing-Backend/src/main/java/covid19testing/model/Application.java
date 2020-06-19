@@ -1,5 +1,6 @@
 package covid19testing.model;
 
+@Entity
 public class Application{
 
     private int fever;
