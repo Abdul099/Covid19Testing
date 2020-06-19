@@ -7,13 +7,13 @@ import java.util.Set;
 public class TestCenter{
 
         private String name;
-	    private String address;
-	    private String city;
-	    private String province;
+	private String address;
+	private String city;
+	private String province;
         private Set<Appointment> appointments;
         private Set<Test> tests;
 
-
+	@Id
         public String getName() {
                 return this.name;
         }
