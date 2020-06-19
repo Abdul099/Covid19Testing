@@ -1,11 +1,16 @@
 package covid19testing.model;
-  
+
+import java.util.Set;
+
 public class TestCenter{
 
         private String name;
 	    private String address;
 	    private String city;
 	    private String province;
+        private Set<Appointment> appointments;
+        private Set<Test> tests;
+
 
         public String getName() {
                 return this.name;
@@ -35,12 +40,20 @@ public class TestCenter{
                 this.province = province;
         }
 
-//        public int proximityToPatient(){
-//        }
-//        public String rankTestCenter(){
-//        }
-//        public void selectTestCenter(){
-//        }
+        public Set<Test> getTests() {
+                return tests;
+        }
 
+        public void setTests(Set<Test> tests) {
+                this.tests = tests;
+        }
+
+        public Set<Appointment> getAppointments() {
+                return appointments;
+        }
+
+        public void setAppointments(Set<Appointment> appointments) {
+                this.appointments = appointments;
+        }
 }
 

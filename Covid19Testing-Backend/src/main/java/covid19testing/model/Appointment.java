@@ -7,7 +7,8 @@ public class Appointment{
 
 	private Date date;
 	private Time time;
-	//getPatient();
+	private Patient patient;
+	private TestCenter testCenter;
 
 	public Date getDate() {
                 return this.date;
@@ -23,4 +24,19 @@ public class Appointment{
                 this.time = time;
         }
 
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public TestCenter getTestCenter() {
+        return testCenter;
+    }
+
+    public void setTestCenter(TestCenter testCenter) {
+        this.testCenter = testCenter;
+    }
 }
