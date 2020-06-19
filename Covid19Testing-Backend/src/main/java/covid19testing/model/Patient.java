@@ -55,7 +55,8 @@ public class Patient{
                 this.province = province;
         }
 
-        @Id
+
+	    @Id
         public int getInsurance() {
                 return this.insurance;
         }
