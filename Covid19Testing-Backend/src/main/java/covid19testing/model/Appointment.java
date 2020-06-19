@@ -1,5 +1,6 @@
 package covid19testing.model;
 
+import javax.persistence.Entity;
 import java.sql.Date;
 import java.sql.Time;
 

@@ -1,5 +1,7 @@
 package covid19testing.model;
 
+import javax.persistence.Entity;
+
 @Entity
 public class Application{
 
