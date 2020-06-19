@@ -2,6 +2,7 @@ package covid19testing.model;
 
 import java.util.Set;
 
+@Entity
 public class Patient{
 	
 	private String name;	
@@ -13,9 +14,9 @@ public class Patient{
 	private String travel;
 	private String preCondition;
 	private String medication;	
-    private Set<Application> applications;
-    private Set<Appointment>  appointments;
-    private Set<Test> tests;
+    	private Set<Application> applications;
+    	private Set<Appointment>  appointments;
+   	private Set<Test> tests;
 
 	public String getName() {
 		return this.name;
