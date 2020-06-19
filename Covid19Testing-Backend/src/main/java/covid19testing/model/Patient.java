@@ -1,5 +1,7 @@
 package covid19testing.model;
 
+import java.util.Set;
+
 public class Patient{
 	
 	private String name;	
@@ -11,6 +13,9 @@ public class Patient{
 	private String travel;
 	private String preCondition;
 	private String medication;	
+    private Set<Application> applications;
+    private Set<Appointment>  appointments;
+    private Set<Test> tests;
 
 	public String getName() {
 		return this.name;
@@ -73,9 +78,32 @@ public class Patient{
         }
         public void setMedication(String medication){
                 this.medication = medication;
-        }	
+        }
 
-//	public void addPatient();
+        public Set<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(Set<Application> applications) {
+        this.applications = applications;
+    }
+
+    public Set<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(Set<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public Set<Test> getTests() {
+        return tests;
+    }
+
+    public void setTests(Set<Test> tests) {
+        this.tests = tests;
+    }
+    //	public void addPatient();
 //	public void editPatient();
 //	public void deletePatient();
 

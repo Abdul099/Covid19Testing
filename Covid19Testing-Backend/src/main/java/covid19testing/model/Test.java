@@ -10,6 +10,8 @@ public class Test{
 	private Status status;
 	private Date date;
 	private Time time;
+	private Patient patient;
+	private  TestCenter testCenter;
 
         public boolean getResult() {
                 return this.result;
@@ -44,6 +46,22 @@ public class Test{
         }
         public void setTime(Time time){
                 this.time = time;
+        }
+
+        public Patient getPatient() {
+                return patient;
+        }
+
+        public void setPatient(Patient patient) {
+                this.patient = patient;
+        }
+
+        public TestCenter getTestCenter() {
+                return testCenter;
+        }
+
+        public void setTestCenter(TestCenter testCenter) {
+                this.testCenter = testCenter;
         }
 }
 

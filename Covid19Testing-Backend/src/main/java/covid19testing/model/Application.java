@@ -1,12 +1,13 @@
 package covid19testing.model;
 
-public class ApplicationForTest{
+public class Application{
 
-        private int fever;
+    private int fever;
 	private boolean cough;
 	private boolean shortnessBreath;
 	private String otherSymptoms;
 	private boolean result;
+	private Patient patient;
 
         public int getFever() {
                 return this.fever;
@@ -43,5 +44,11 @@ public class ApplicationForTest{
                 this.result = result;
         }
 
+        public Patient getPatient() {
+                return patient;
+        }
 
+        public void setPatient(Patient patient) {
+                this.patient = patient;
+        }
 }
