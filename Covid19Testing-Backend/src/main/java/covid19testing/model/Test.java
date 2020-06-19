@@ -3,6 +3,7 @@ package covid19testing.model;
 import java.sql.Date;
 import java.sql.Time;
 
+@Entity
 public class Test{
 
 	private boolean result;
