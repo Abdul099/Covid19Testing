@@ -1,6 +1,6 @@
 package covid19testing.model;
 
-public class ApplicationForTest{
+public class Application{
 
         private int fever;
 	private boolean cough;
