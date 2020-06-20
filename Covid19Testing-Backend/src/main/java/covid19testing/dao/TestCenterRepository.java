@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface TestCenterRepository extends CrudRepository<TestCenter, String> {
 
-    TestCenter FindTestCenterByName(String name);
+    TestCenter findTestCenterByName(String name);
 
     void deleteTestCenterByName(String name);
 

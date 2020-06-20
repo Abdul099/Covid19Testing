@@ -50,16 +50,16 @@ public class Appointment {
         this.location = testCenter;
     }
 
-    public void setTransactionID(String value) {
+    public void setAppointmentID(String value) {
         this.appointmentID = value;
     }
 
-    public void setTransactionID() {
+    public void setAppointmentID() {
         this.appointmentID = UUID.randomUUID().toString();
     }
 
     @Id
-    public String getTransactionID() {
+    public String getAppointmentID() {
         return this.appointmentID;
     }
 }
