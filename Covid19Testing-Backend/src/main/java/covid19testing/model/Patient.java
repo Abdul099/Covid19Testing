@@ -14,7 +14,7 @@ public class Patient {
     private String address;
     private String city;
     private String province;
-    private int insurance;
+    private String insuranceNumber;
     private String travel;
     private String preCondition;
     private String medication;
@@ -64,12 +64,12 @@ public class Patient {
 
 
     @Id
-    public int getInsurance() {
-        return this.insurance;
+    public String getInsuranceNumber() {
+        return this.insuranceNumber;
     }
 
-    public void setInsurance(int insurance) {
-        this.insurance = insurance;
+    public void setInsuranceNumber(String insurance) {
+        this.insuranceNumber = insurance;
     }
 
     public String getTravel() {
