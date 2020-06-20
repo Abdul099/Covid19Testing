@@ -2,6 +2,7 @@ package covid19testing.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.UUID;
 
 @Entity
@@ -12,7 +13,7 @@ public class Application {
     private boolean shortnessBreath;
     private String otherSymptoms;
     private boolean result;
-    private Patient patient;
+    private Patient applicant;
     private String applicationID;
 
     public int getFever() {
@@ -55,24 +56,25 @@ public class Application {
         this.result = result;
     }
 
-    public Patient getPatient() {
-        return patient;
+    @ManyToOne(optional = false)
+    public Patient getApplicant() {
+        return applicant;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setApplicant(Patient patient) {
+        this.applicant = patient;
     }
 
-    public void setTransactionID(String value) {
+    public void setApplicationID(String value) {
         this.applicationID = value;
     }
 
-    public void setTransactionID() {
+    public void setApplicationID() {
         this.applicationID = UUID.randomUUID().toString();
     }
 
     @Id
-    public String getTransactionID() {
+    public String getApplicationID() {
         return this.applicationID;
     }
 }

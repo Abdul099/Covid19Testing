@@ -15,8 +15,8 @@ public class Test {
     private Status status;
     private Date date;
     private Time time;
-    private Patient patient;
-    private TestCenter testCenter;
+    private Patient tester;
+    private TestCenter testSite;
     private String testID;
 
     public boolean getResult() {
@@ -60,33 +60,33 @@ public class Test {
     }
 
     @ManyToOne(optional = false)
-    public Patient getPatient() {
-        return patient;
+    public Patient getTester() {
+        return tester;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setTester(Patient patient) {
+        this.tester = patient;
     }
 
     @ManyToOne(optional = false)
-    public TestCenter getTestCenter() {
-        return testCenter;
+    public TestCenter getTestSite() {
+        return testSite;
     }
 
-    public void setTestCenter(TestCenter testCenter) {
-        this.testCenter = testCenter;
+    public void setTestSite(TestCenter testCenter) {
+        this.testSite = testCenter;
     }
 
     public void setTestID(String value) {
         this.testID = value;
     }
 
-    public void setTransactionID() {
+    public void setTestID() {
         this.testID = UUID.randomUUID().toString();
     }
 
     @Id
-    public String getTransactionID() {
+    public String getTestID() {
         return this.testID;
     }
 }

@@ -49,7 +49,7 @@ public class TestCenter {
         this.province = province;
     }
 
-    @OneToMany(mappedBy = "testsite", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "testSite", fetch = FetchType.EAGER)
     public Set<Test> getTests() {
         return tests;
     }

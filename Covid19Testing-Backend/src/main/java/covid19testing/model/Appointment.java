@@ -12,8 +12,8 @@ public class Appointment {
 
     private Date date;
     private Time time;
-    private Patient patient;
-    private TestCenter testCenter;
+    private Patient appointmentPatient;
+    private TestCenter location;
     private String appointmentID;
 
     public Date getDate() {
@@ -32,21 +32,22 @@ public class Appointment {
         this.time = time;
     }
 
-    public Patient getPatient() {
-        return patient;
+    @ManyToOne(optional = false)
+    public Patient getappointmentPatient() {
+        return appointmentPatient;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setappointmentPatient(Patient patient) {
+        this.appointmentPatient = patient;
     }
 
     @ManyToOne(optional = false)
-    public TestCenter getTestCenter() {
-        return testCenter;
+    public TestCenter getLocation() {
+        return location;
     }
 
-    public void setTestCenter(TestCenter testCenter) {
-        this.testCenter = testCenter;
+    public void setLocation(TestCenter testCenter) {
+        this.location = testCenter;
     }
 
     public void setTransactionID(String value) {
