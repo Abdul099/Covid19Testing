@@ -15,6 +15,7 @@ public class Patient {
     private String city;
     private String province;
     private String insuranceNumber;
+    private int age;
     private String travel;
     private String preCondition;
     private String medication;
@@ -71,6 +72,10 @@ public class Patient {
     public void setInsuranceNumber(String insurance) {
         this.insuranceNumber = insurance;
     }
+
+    public int getAge() { return age; }
+
+    public void setAge(int age) { this.age = age; }
 
     public String getTravel() {
         return this.travel;
