@@ -15,6 +15,7 @@ public class Appointment {
     private Patient appointmentPatient;
     private TestCenter location;
     private String appointmentID;
+    public boolean available;
 
     public Date getDate() {
         return this.date;
@@ -61,5 +62,13 @@ public class Appointment {
     @Id
     public String getAppointmentID() {
         return this.appointmentID;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 }
