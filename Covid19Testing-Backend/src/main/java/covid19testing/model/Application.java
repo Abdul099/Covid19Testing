@@ -8,7 +8,7 @@ import java.util.UUID;
 @Entity
 public class Application {
 
-    private int fever;
+    private double fever;
     private boolean cough;
     private boolean shortnessBreath;
     private String otherSymptoms;
@@ -16,11 +16,11 @@ public class Application {
     private Patient applicant;
     private String applicationID;
 
-    public int getFever() {
+    public double getFever() {
         return this.fever;
     }
 
-    public void setFever(int Fever) {
+    public void setFever(double Fever) {
         this.fever = fever;
     }
 

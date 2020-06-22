@@ -107,6 +107,38 @@ public class PatientService {
 
     }
 
+    @Transactional
+    public List<Appointment> getAllAppointmentsForPatient(Patient patient){
+        if(patient == null){
+            throw new IllegalArgumentException("Patient Cannot be null!");
+        }
+        List<Appointment> appointments = new ArrayList<>();
+        for(Appointment a: appointmentRepository.findAll()){
+            if(a.getappointmentPatient().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+                appointments.add(a);
+            }
+        }
+        return appointments;
+    }
+
+    @Transactional
+    public List<Application> getAllApplicationsForPatient(Patient patient){
+        if(patient == null){
+            throw new IllegalArgumentException("Patient Cannot be null!");
+        }
+        List<Application> applications = new ArrayList<>();
+        for(Application app: applicationRepository.findAll()){
+            if(app.getApplicant().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+                applications.add(app);
+            }
+        }
+        return applications;
+    }
+    //TODO: Add a get all tests for patient once test dao is ready
+
+
+    ////////////////private methods
+
     private void patientCheckParams(String name, String surname, String address, String city,
                                     String province, String insuranceNumber, int age,
                                     String travel, String precondition, String medication) throws IllegalAccessException {

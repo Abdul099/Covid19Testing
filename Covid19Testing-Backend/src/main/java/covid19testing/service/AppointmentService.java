@@ -23,15 +23,11 @@ public class AppointmentService {
     PatientRepository patientRepository;
 
     @Transactional
-    public Appointment createAppointment(Date date, Time time, String appointmentID, boolean available) {
-        Appointment existingAppointment = appointmentRepository.findAppointmentByAppointmentID(appointmentID);
-        if (existingAppointment != null) {
-            throw new IllegalArgumentException("Appointment with id:" + appointmentID + "already exists");
-        }
+    public Appointment createAppointment(Date date, Time time, boolean available) {
         Appointment newAppointment = new Appointment();
         newAppointment.setDate(date);
         newAppointment.setTime(time);
-        newAppointment.setAppointmentID(appointmentID);
+        newAppointment.setAppointmentID();
         newAppointment.setAvailable(available);
         appointmentRepository.save(newAppointment);
         return newAppointment;
@@ -72,7 +68,7 @@ public class AppointmentService {
         if(!appointment.isAvailable()){
             throw new IllegalArgumentException("Appointment already booked");
         }
-        //Todo create a test object for the patient (once beyza finishes test dao)
+        //TODO: create a test object for the patient (once beyza finishes test dao)
         appointment.setappointmentPatient(patient);
         appointmentRepository.save(appointment);
     }
