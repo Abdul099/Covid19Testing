@@ -18,8 +18,8 @@ public class ApplicationService {
 
     @Transactional
     public Application createApplication(double fever, boolean cough, boolean shortnessBreath,
-                                         String otherSymptoms){
-        if(fever<34.0 || (fever>43.0 && fever<93.0) || fever>109.0){ //if out of range both in celsius and fahrenheit
+                                         String otherSymptoms) {
+        if (fever < 34.0 || (fever > 43.0 && fever < 93.0) || fever > 109.0) { //if out of range both in celsius and fahrenheit
             throw new IllegalArgumentException("Invalid Body Temperature!");
         }
         Application application = new Application();
@@ -34,11 +34,24 @@ public class ApplicationService {
     }
 
     @Transactional
-    public void deleteApplication(String applicationID){
+    public void deleteApplication(String applicationID) {
         Application app = applicationRepository.findApplicationByApplicationID(applicationID);
-        if(app == null){
+        if (app == null) {
             throw new IllegalArgumentException("Application with invalid ID!");
         }
         applicationRepository.deleteApplicationByApplicationID(applicationID);
     }
+
+    //    TODO:
+    @Transactional
+    public void acceptApplication(String applicationID) {
+
+    }
+
+    //  TODO:
+    @Transactional
+    public void rejectApplication(String applicationID) {
+
+    }
+
 }
