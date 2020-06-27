@@ -9,8 +9,8 @@ public class Application {
     private double fever;
     private boolean cough;
     private boolean shortnessBreath;
-    private String otherSymptoms;
     private boolean result;
+    private String otherSymptoms;
     private Patient applicant;
     private String applicationID;
 
@@ -104,14 +104,6 @@ public class Application {
         this.otherSymptoms = otherSymptoms;
     }
 
-    public boolean getResult() {
-        return this.result;
-    }
-
-    public void setResult(boolean result) {
-        this.result = result;
-    }
-
     @ManyToOne(optional = false)
     public Patient getApplicant() {
         return applicant;
@@ -140,5 +132,13 @@ public class Application {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public boolean getResult() {
+        return result;
+    }
+
+    public void setResult(boolean result) {
+        this.result = result;
     }
 }
