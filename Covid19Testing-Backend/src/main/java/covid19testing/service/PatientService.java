@@ -73,10 +73,13 @@ public class PatientService {
         for (Appointment appointment : p.getAppointments()) {
             appointmentRepository.deleteAppointmentByAppointmentID(appointment.getAppointmentID());
         }
-        for (Application app : p.getApplications()){
+        for (Application app : p.getApplications()) {
             applicationRepository.deleteApplicationByApplicationID(app.getApplicationID());
         }
-        //ToDo : delete tests once testRepository is available
+        for (Test t : p.getTests()) {
+            testRepository.deleteTestByTestID(t.getTestID());
+        }
+
         patientRepository.deletePatientByInsuranceNumber(insuranceNumber);
     }
 
@@ -108,17 +111,16 @@ public class PatientService {
         p.setTravel(travel);
         patientRepository.save(p);
         return p;
-
     }
 
     @Transactional
-    public List<Appointment> getAllAppointmentsForPatient(Patient patient){
-        if(patient == null){
+    public List<Appointment> getAllAppointmentsForPatient(Patient patient) {
+        if (patient == null) {
             throw new IllegalArgumentException("Patient Cannot be null!");
         }
         List<Appointment> appointments = new ArrayList<>();
-        for(Appointment a: appointmentRepository.findAll()){
-            if(a.getappointmentPatient().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+        for (Appointment a : appointmentRepository.findAll()) {
+            if (a.getappointmentPatient().getInsuranceNumber().equals(patient.getInsuranceNumber())) {
                 appointments.add(a);
             }
         }
@@ -126,26 +128,27 @@ public class PatientService {
     }
 
     @Transactional
-    public List<Application> getAllApplicationsForPatient(Patient patient){
-        if(patient == null){
+    public List<Application> getAllApplicationsForPatient(Patient patient) {
+        if (patient == null) {
             throw new IllegalArgumentException("Patient Cannot be null!");
         }
         List<Application> applications = new ArrayList<>();
-        for(Application app: applicationRepository.findAll()){
-            if(app.getApplicant().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+        for (Application app : applicationRepository.findAll()) {
+            if (app.getApplicant().getInsuranceNumber().equals(patient.getInsuranceNumber())) {
                 applications.add(app);
             }
         }
         return applications;
     }
+
     @Transactional
-    public List<Test> getAllTestsForPatient(Patient patient){
-        if(patient == null){
+    public List<Test> getAllTestsForPatient(Patient patient) {
+        if (patient == null) {
             throw new IllegalArgumentException("Patient Cannot be null!");
         }
         List<Test> tests = new ArrayList<>();
-        for(Test test: testRepository.findAll()){
-            if(test.getTester().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+        for (Test test : testRepository.findAll()) {//is this better or should we use patient.getTests()???
+            if (test.getTester().getInsuranceNumber().equals(patient.getInsuranceNumber())) {
                 tests.add(test);
             }
         }
