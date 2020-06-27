@@ -3,11 +3,16 @@ package covid19testing.service;
 import covid19testing.dao.ApplicationRepository;
 import covid19testing.dao.AppointmentRepository;
 import covid19testing.dao.PatientRepository;
+import covid19testing.model.Application;
+import covid19testing.model.Appointment;
 import covid19testing.model.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Service
 public class PatientService {
@@ -57,6 +62,23 @@ public class PatientService {
 
     @Transactional
     public void deletePatient(String insuranceNumber) {
+        Patient p = patientRepository.findPatientByInsuranceNumber(insuranceNumber);
+        if (p == null) {
+            throw new IllegalArgumentException("The patient with insurance number" + insuranceNumber + "does not exist!");
+        }
+        for (Appointment appointment : p.getAppointments()) {
+            appointmentRepository.deleteAppointmentByAppointmentID(appointment.getAppointmentID());
+        }
+        for (Application app : p.getApplications()){
+            applicationRepository.deleteApplicationByApplicationID(app.getApplicationID());
+        }
+        //ToDo : delete tests once testRepository is available
+        patientRepository.deletePatientByInsuranceNumber(insuranceNumber);
+    }
+
+    @Transactional
+    public List<Patient> getAllPatients() {
+        return new ArrayList<Patient>((Collection<? extends Patient>) patientRepository.findAll());
     }
 
     @Transactional
@@ -84,6 +106,38 @@ public class PatientService {
         return p;
 
     }
+
+    @Transactional
+    public List<Appointment> getAllAppointmentsForPatient(Patient patient){
+        if(patient == null){
+            throw new IllegalArgumentException("Patient Cannot be null!");
+        }
+        List<Appointment> appointments = new ArrayList<>();
+        for(Appointment a: appointmentRepository.findAll()){
+            if(a.getappointmentPatient().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+                appointments.add(a);
+            }
+        }
+        return appointments;
+    }
+
+    @Transactional
+    public List<Application> getAllApplicationsForPatient(Patient patient){
+        if(patient == null){
+            throw new IllegalArgumentException("Patient Cannot be null!");
+        }
+        List<Application> applications = new ArrayList<>();
+        for(Application app: applicationRepository.findAll()){
+            if(app.getApplicant().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+                applications.add(app);
+            }
+        }
+        return applications;
+    }
+    //TODO: Add a get all tests for patient once test dao is ready
+
+
+    ////////////////private methods
 
     private void patientCheckParams(String name, String surname, String address, String city,
                                     String province, String insuranceNumber, int age,
