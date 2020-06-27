@@ -58,7 +58,7 @@ public class ApplicationService {
         applicationRepository.save(application);
         return application;
     }
-
+    
     @Transactional
     public Application evaluateApplication(String applicationID, boolean result) {//true = accepted false = rejected
         Application app = applicationRepository.findApplicationByApplicationID(applicationID);
@@ -69,5 +69,5 @@ public class ApplicationService {
         applicationRepository.save(app);
         return app;
     }
-
+    
 }
