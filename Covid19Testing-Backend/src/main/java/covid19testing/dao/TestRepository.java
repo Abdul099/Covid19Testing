@@ -3,10 +3,10 @@ package covid19testing.dao;
 import covid19testing.model.Test;
 import org.springframework.data.repository.CrudRepository;
 
-public interface TestRepository {
+public interface TestRepository extends CrudRepository<Test, String> {
 
-	Test findTestByTestID(int testID)
+	Test findTestByTestID(String testID);
 
-	void deleteTestByTestID(int testID)
+	void deleteTestByTestID(String testID);
 
 }
