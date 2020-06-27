@@ -48,7 +48,18 @@ public class TestCenterService {
         }
         testCenterRepository.deleteTestCenterByName(name);
     }
-
+    @Transactional
+    public TestCenter updateTestCenter(String name, String address, String city, String province){
+        TestCenter center = testCenterRepository.findTestCenterByName(name);
+        if(center == null){
+            throw new IllegalArgumentException("Test Center Cannot be null!");
+        }
+        center.setProvince(province);
+        center.setCity(city);
+        center.setAddress(address);
+        testCenterRepository.save(center);
+        return center;
+    }
     @Transactional
     public List<Test> getAllTestsForTestCenter(TestCenter center) {
         if (center == null) {
@@ -62,4 +73,6 @@ public class TestCenterService {
         }
         return tests;
     }
+
+
 }

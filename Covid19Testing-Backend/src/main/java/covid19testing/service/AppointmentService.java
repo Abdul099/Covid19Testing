@@ -22,6 +22,9 @@ public class AppointmentService {
     @Autowired
     PatientRepository patientRepository;
 
+    @Autowired
+    TestService testService;
+
     @Transactional
     public Appointment createAppointment(Date date, Time time, boolean available) {
         Appointment newAppointment = new Appointment();
@@ -43,7 +46,7 @@ public class AppointmentService {
     }
 
     @Transactional
-    public Appointment updateAppointment(Date date, Time time, String appointmentID, boolean available){
+    public Appointment updateAppointment(Date date, Time time, String appointmentID, boolean available) {
         Appointment appointment = appointmentRepository.findAppointmentByAppointmentID(appointmentID);
         if (appointment == null) {
             throw new IllegalArgumentException("Appointment with id:" + appointmentID + "Does not exist");
@@ -56,33 +59,33 @@ public class AppointmentService {
     }
 
     @Transactional
-    public void bookAppointmentForPatient(Patient patient, Appointment appointment){
+    public void bookAppointmentForPatient(Patient patient, Appointment appointment) {
 
-        if(patient == null){
+        if (patient == null) {
             throw new IllegalArgumentException("Patient does not exist!");
         }
-        if(appointment == null){
+        if (appointment == null) {
             throw new IllegalArgumentException("Appointment does not exist!");
         }
 
-        if(!appointment.isAvailable()){
+        if (!appointment.isAvailable()) {
             throw new IllegalArgumentException("Appointment already booked");
         }
-        //TODO: create a test object for the patient (once beyza finishes test dao)
+        //TODO: create a test object for the patient (once beyza finishes testService)
         appointment.setappointmentPatient(patient);
         appointmentRepository.save(appointment);
     }
 
     @Transactional
-    public void assignAppointmentToTestCenter(TestCenter center, Appointment appointment){
-        if(center == null){
+    public void assignAppointmentToTestCenter(TestCenter center, Appointment appointment) {
+        if (center == null) {
             throw new IllegalArgumentException("Test Center does not exist!");
         }
-        if(appointment == null){
+        if (appointment == null) {
             throw new IllegalArgumentException("Appointment does not exist!");
         }
 
-        if(!appointment.isAvailable()){
+        if (!appointment.isAvailable()) {
             throw new IllegalArgumentException("Appointment already booked");
         }
         appointment.setLocation(center);

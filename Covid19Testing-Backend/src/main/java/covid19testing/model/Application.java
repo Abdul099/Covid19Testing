@@ -29,6 +29,9 @@ public class Application {
 	@Enumerated(EnumType.STRING)
         private ApplicationResult applicationResult;
 
+	@Enumerated(EnumType.STRING)
+        private Status status;
+
     public Aches getAches() {
         return aches;
     }
@@ -129,5 +132,13 @@ public class Application {
     @Id
     public String getApplicationID() {
         return this.applicationID;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

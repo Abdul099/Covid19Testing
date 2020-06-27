@@ -4,6 +4,7 @@ import covid19testing.dao.ApplicationRepository;
 import covid19testing.dao.PatientRepository;
 import covid19testing.model.Application;
 import covid19testing.model.Patient;
+import covid19testing.model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +29,11 @@ public class ApplicationService {
         application.setCough(cough);
         application.setShortnessBreath(shortnessBreath);
         application.setOtherSymptoms(otherSymptoms);
-        //TODO Add status once it's available
+        application.setStatus(Status.InProcess);
         applicationRepository.save(application);
         return application;
     }
-
+    
     @Transactional
     public void deleteApplication(String applicationID) {
         Application app = applicationRepository.findApplicationByApplicationID(applicationID);
@@ -42,16 +43,31 @@ public class ApplicationService {
         applicationRepository.deleteApplicationByApplicationID(applicationID);
     }
 
-    //    TODO:
     @Transactional
-    public void acceptApplication(String applicationID) {
-
+    public Application updateApplication(double fever, boolean cough, boolean shortnessBreath,
+                                         String otherSymptoms, Status status, String applicationID) {
+        Application application = applicationRepository.findApplicationByApplicationID(applicationID);
+        if(application == null){
+            throw new IllegalArgumentException("Application cannot be null!");
+        }
+        application.setFever(fever);
+        application.setCough(cough);
+        application.setShortnessBreath(shortnessBreath);
+        application.setOtherSymptoms(otherSymptoms);
+        application.setStatus(status);
+        applicationRepository.save(application);
+        return application;
     }
 
-    //  TODO:
     @Transactional
-    public void rejectApplication(String applicationID) {
-
+    public Application evaluateApplication(String applicationID, boolean result) {//true = accepted false = rejected
+        Application app = applicationRepository.findApplicationByApplicationID(applicationID);
+        if(app == null){
+            throw new IllegalArgumentException("Application cannot be null!");
+        }
+        app.setResult(result);
+        applicationRepository.save(app);
+        return app;
     }
 
 }
