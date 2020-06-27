@@ -16,6 +16,24 @@ public class Application {
     private Patient applicant;
     private String applicationID;
 
+	@Enumerated(EnumType.STRING)
+	private Fever fever;
+
+	@Enumerated(EnumType.STRING)
+        private Tiredness tiredness;
+
+	@Enumerated(EnumType.STRING)
+        private SoreThroat soreThroat;
+
+	@Enumerated(EnumType.STRING)
+        private Aches aches;
+
+	@Enumerated(EnumType.STRING)
+        private ChestPain chestPain;
+
+	@Enumerated(EnumType.STRING)
+        private ApplicationResult applicationResult;
+
     public double getFever() {
         return this.fever;
     }

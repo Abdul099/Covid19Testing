@@ -19,6 +19,12 @@ public class Test {
     private TestCenter testSite;
     private String testID;
 
+	@Enumerated(EnumType.STRING)
+        private Status status;
+
+	@Enumerated(EnumType.STRING)
+        private Fever fever;
+
     public boolean getResult() {
         return this.result;
     }
