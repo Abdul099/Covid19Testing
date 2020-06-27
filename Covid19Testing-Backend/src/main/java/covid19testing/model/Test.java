@@ -1,8 +1,6 @@
 package covid19testing.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.UUID;
@@ -12,7 +10,6 @@ public class Test {
 
     private boolean result;
     private int fever;
-    private Status status;
     private Date date;
     private Time time;
     private Patient tester;
@@ -21,9 +18,6 @@ public class Test {
 
 	@Enumerated(EnumType.STRING)
         private Status status;
-
-	@Enumerated(EnumType.STRING)
-        private Fever fever;
 
     public boolean getResult() {
         return this.result;

@@ -1,8 +1,6 @@
 package covid19testing.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -15,9 +13,6 @@ public class Application {
     private boolean result;
     private Patient applicant;
     private String applicationID;
-
-	@Enumerated(EnumType.STRING)
-	private Fever fever;
 
 	@Enumerated(EnumType.STRING)
         private Tiredness tiredness;
