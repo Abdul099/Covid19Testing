@@ -3,9 +3,11 @@ package covid19testing.service;
 import covid19testing.dao.ApplicationRepository;
 import covid19testing.dao.AppointmentRepository;
 import covid19testing.dao.PatientRepository;
+import covid19testing.dao.TestRepository;
 import covid19testing.model.Application;
 import covid19testing.model.Appointment;
 import covid19testing.model.Patient;
+import covid19testing.model.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ public class PatientService {
     AppointmentRepository appointmentRepository;
     @Autowired
     ApplicationRepository applicationRepository;
+    @Autowired
+    TestRepository testRepository;
 
     @Transactional
     public Patient createPatient(String name, String surname, String address, String city,
@@ -134,8 +138,19 @@ public class PatientService {
         }
         return applications;
     }
-    //TODO: Add a get all tests for patient once test dao is ready
-
+    @Transactional
+    public List<Test> getAllTestsForPatient(Patient patient){
+        if(patient == null){
+            throw new IllegalArgumentException("Patient Cannot be null!");
+        }
+        List<Test> tests = new ArrayList<>();
+        for(Test test: testRepository.findAll()){
+            if(test.getTester().getInsuranceNumber().equals(patient.getInsuranceNumber())){
+                tests.add(test);
+            }
+        }
+        return tests;
+    }
 
     ////////////////private methods
 

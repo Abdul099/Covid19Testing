@@ -2,6 +2,7 @@ package covid19testing.service;
 
 import covid19testing.dao.AppointmentRepository;
 import covid19testing.dao.TestCenterRepository;
+import covid19testing.dao.TestRepository;
 import covid19testing.model.Appointment;
 import covid19testing.model.TestCenter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,8 @@ public class TestCenterService {
     TestCenterRepository testCenterRepository;
     @Autowired
     AppointmentRepository appointmentRepository;
-    // TODO: Add Test Repository
+    @Autowired
+    TestRepository testRepository;
 
     @Transactional
     public TestCenter createTestCenter(String name, String address, String city, String province){

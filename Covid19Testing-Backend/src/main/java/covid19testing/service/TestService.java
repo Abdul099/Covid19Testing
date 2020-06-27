@@ -25,5 +25,6 @@ public class TestService {
 	@Autowired
 	TestRepository testRepository;
 
-	@Transactional
-	public Test 
+//	@Transactional
+//	public Test
+}

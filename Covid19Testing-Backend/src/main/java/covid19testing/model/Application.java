@@ -29,6 +29,46 @@ public class Application {
 	@Enumerated(EnumType.STRING)
         private ApplicationResult applicationResult;
 
+    public Aches getAches() {
+        return aches;
+    }
+
+    public void setAches(Aches aches) {
+        this.aches = aches;
+    }
+
+    public ApplicationResult getApplicationResult() {
+        return applicationResult;
+    }
+
+    public void setApplicationResult(ApplicationResult applicationResult) {
+        this.applicationResult = applicationResult;
+    }
+
+    public Tiredness getTiredness() {
+        return tiredness;
+    }
+
+    public void setTiredness(Tiredness tiredness) {
+        this.tiredness = tiredness;
+    }
+
+    public ChestPain getChestPain() {
+        return chestPain;
+    }
+
+    public void setChestPain(ChestPain chestPain) {
+        this.chestPain = chestPain;
+    }
+
+    public SoreThroat getSoreThroat() {
+        return soreThroat;
+    }
+
+    public void setSoreThroat(SoreThroat soreThroat) {
+        this.soreThroat = soreThroat;
+    }
+
     public double getFever() {
         return this.fever;
     }
