@@ -51,6 +51,16 @@ public class PatientService {
         patientRepository.save(yeniPatient);
         return yeniPatient;
     }
+    public Patient createPatient(String insuranceNumber) throws IllegalAccessException {
+        Patient oldPatient = patientRepository.findPatientByInsuranceNumber(insuranceNumber);//check if ins number exists already
+        if (oldPatient != null) {
+            throw new IllegalArgumentException("patient with insurance number" + insuranceNumber + "Already Exists");
+        }
+        Patient yeniPatient = new Patient();
+        yeniPatient.setInsuranceNumber(insuranceNumber);
+        patientRepository.save(yeniPatient);
+        return yeniPatient;
+    }
 
     @Transactional
     public Patient getPatientByInsuranceNumber(String insuranceNumber) {
@@ -155,6 +165,8 @@ public class PatientService {
         return tests;
     }
 
+    //TODO: make a getAllTestsfor
+    //TODO: patient
     ////////////////private methods
 
     private void patientCheckParams(String name, String surname, String address, String city,

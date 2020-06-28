@@ -4,27 +4,29 @@ import covid19testing.model.*;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.sql.Date;
+import java.sql.Time;
 
 public class TestDto {
 
-    	private int fever;
-    	private Date date;
-    	private Time time;
-    	private String patientInsuranceNo;
-    	private String testCenterName;
-    	private String testID;
+    private int fever;
+    private Date date;
+    private Time time;
+    private String patientInsuranceNo;
+    private String testCenterName;
+    private String testID;
 
-	public TestDto(){
-	}
+    public TestDto() {
+    }
 
-	public TestDto(int fever, Date date, Time time, String patientInsuranceNo, String testCenterName, String testID){
-	this.fever = fever;
-	this date = date;
-	this time = time;
-	this patientInsuranceNo = patientInsuranceNo;
-	this testCenterName = testCenterName;
-	this testID = testID;
-}
+    public TestDto(int fever, Date date, Time time, String patientInsuranceNo, String testCenterName, String testID) {
+        this.fever = fever;
+        this.date = date;
+        this.time = time;
+        this.patientInsuranceNo = patientInsuranceNo;
+        this.testCenterName = testCenterName;
+        this.testID = testID;
+    }
 
 //enums, status? result?
 

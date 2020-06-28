@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,67 +28,68 @@ public class TestService {
 	TestRepository testRepository;
 
 	@Transactional
-	public Test createTest(Date date, Time time){
+	public Test createTest(Date date, Time time) {
 		Test newTest = new Test();
 		newTest.setDate(date);
 		newTest.setTime(time);
 		newTest.setTestID();
-		newTest.setResult();
-		newTest.setStatus();
+//		newTest.setResult();
+//		newTest.setStatus();
 		testRepository.save(newTest);
 		return newTest;
 	}
 
 	@Transactional
-	public void deleteTest(String testID){
-		Test test = testRepository.findTestByTestID(testID);
-	if (test == null) {
-            throw new IllegalArgumentException("Test with ID: " + testID + " does not exist");
-        }
-	testRepository.deleteTestByTestID(testID);
-	}
-
-	@Transactional
-	public Test updateTest(Date date, Time time, String testID){
+	public void deleteTest(String testID) {
 		Test test = testRepository.findTestByTestID(testID);
 		if (test == null) {
-            	throw new IllegalArgumentException("Test with ID: " + testID + " does not exist");
-        	}
-		test.setDate(date);
-        	test.setTime(time);
-		test.setStatus(status);
-		test.setResult(result);
-                testRepository.save(test);
-                return test;
-	}
-	
-	@Transactional
-	public Test getAllTests(){
-		List<Test> allTests = new ArrayList<>();
-		for(Test t: testRepository.findAll()){
-			tests.add(t);
+			throw new IllegalArgumentException("Test with ID: " + testID + " does not exist");
 		}
-		return allTests.length;
-	}
-	
-	@Transactional
-	public Test getPositiveTests(){
-		List<Test> positiveTests = new ArrayList<>();
-		for(Test t: testRepository.findAll()){
-			if(t.getResult() == "Positive"){
-				positiveTests.add(t);
-			}
-		}
-	return positiveTests.length;
+		testRepository.deleteTestByTestID(testID);
 	}
 
 	@Transactional
-        public Test getNegativeTests(){
-                List<Test> negativeTests = new ArrayList<>();
-                for(Test t: testRepository.findAll()){
-                        if(t.getResult() == "Negative"){
-                                negativeTests.add(t);
-                        }
-                }
-        return negativeTests.length;
+	public Test updateTest(Date date, Time time, String testID) {
+		Test test = testRepository.findTestByTestID(testID);
+		if (test == null) {
+			throw new IllegalArgumentException("Test with ID: " + testID + " does not exist");
+		}
+		test.setDate(date);
+		test.setTime(time);
+//		test.setStatus(status);
+//		test.setResult(result);
+		testRepository.save(test);
+		return test;
+	}
+
+//	@Transactional
+//	public Test getAllTests() {
+//		List<Test> allTests = new ArrayList<>();
+//		for (Test t : testRepository.findAll()) {
+//			tests.add(t);
+//		}
+//		return allTests;
+//	}
+//
+//	@Transactional
+//	public Test getPositiveTests() {
+//		List<Test> positiveTests = new ArrayList<>();
+//		for (Test t : testRepository.findAll()) {
+//			if (t.getResult() == "Positive") {
+//				positiveTests.add(t);
+//			}
+//		}
+//		return positiveTests.length;
+//	}
+//
+//	@Transactional
+//	public Test getNegativeTests() {
+//		List<Test> negativeTests = new ArrayList<>();
+//		for (Test t : testRepository.findAll()) {
+//			if (t.getResult() == "Negative") {
+//				negativeTests.add(t);
+//			}
+//		}
+//		return negativeTests.length();
+//	}
 }

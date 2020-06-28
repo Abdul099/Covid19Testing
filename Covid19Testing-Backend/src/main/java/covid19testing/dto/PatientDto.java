@@ -30,7 +30,9 @@ public class PatientDto {
         this.preCondition = preCondition;
         this.medication = medication;
     }
-
+    public PatientDto(String insuranceNumber){
+        this.insuranceNumber = insuranceNumber;
+    }
     public int getAge() {
         return age;
     }

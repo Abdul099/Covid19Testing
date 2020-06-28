@@ -88,6 +88,10 @@ public class Test {
         this.testID = UUID.randomUUID().toString();
     }
 
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
     @Id
     public String getTestID() {
         return this.testID;
