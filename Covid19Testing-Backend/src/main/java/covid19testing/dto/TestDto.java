@@ -26,6 +26,8 @@ public class TestDto {
 	this testID = testID;
 }
 
+//enums, status? result?
+
     public int getFever() {
         return this.fever;
     }
