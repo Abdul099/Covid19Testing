@@ -31,6 +31,8 @@ public class TestService {
 		newTest.setDate(date);
 		newTest.setTime(time);
 		newTest.setTestID();
+		newTest.setResult();
+		newTest.setStatus();
 		testRepository.save(newTest);
 		return newTest;
 	}
@@ -52,9 +54,39 @@ public class TestService {
         	}
 		test.setDate(date);
         	test.setTime(time);
+		test.setStatus(status);
+		test.setResult(result);
                 testRepository.save(test);
                 return test;
 	}
+	
+	@Transactional
+	public Test getAllTests(){
+		List<Test> allTests = new ArrayList<>();
+		for(Test t: testRepository.findAll()){
+			tests.add(t);
+		}
+		return allTests.length;
+	}
+	
+	@Transactional
+	public Test getPositiveTests(){
+		List<Test> positiveTests = new ArrayList<>();
+		for(Test t: testRepository.findAll()){
+			if(t.getResult() == "Positive"){
+				positiveTests.add(t);
+			}
+		}
+	return positiveTests.length;
+	}
 
-
+	@Transactional
+        public Test getNegativeTests(){
+                List<Test> negativeTests = new ArrayList<>();
+                for(Test t: testRepository.findAll()){
+                        if(t.getResult() == "Negative"){
+                                negativeTests.add(t);
+                        }
+                }
+        return negativeTests.length;
 }
