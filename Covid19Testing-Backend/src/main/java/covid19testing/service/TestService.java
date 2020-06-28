@@ -25,6 +25,36 @@ public class TestService {
 	@Autowired
 	TestRepository testRepository;
 
-//	@Transactional
-//	public Test
+	@Transactional
+	public Test createTest(Date date, Time time){
+		Test newTest = new Test();
+		newTest.setDate(date);
+		newTest.setTime(time);
+		newTest.setTestID();
+		testRepository.save(newTest);
+		return newTest;
+	}
+
+	@Transactional
+	public void deleteTest(String testID){
+		Test test = testRepository.findTestByTestID(testID);
+	if (test == null) {
+            throw new IllegalArgumentException("Test with ID: " + testID + " does not exist");
+        }
+	testRepository.deleteTestByTestID(testID);
+	}
+
+	@Transactional
+	public Test updateTest(Date date, Time time, String testID){
+		Test test = testRepository.findTestByTestID(testID);
+		if (test == null) {
+            	throw new IllegalArgumentException("Test with ID: " + testID + " does not exist");
+        	}
+		test.setDate(date);
+        	test.setTime(time);
+                testRepository.save(test);
+                return test;
+	}
+
+
 }
