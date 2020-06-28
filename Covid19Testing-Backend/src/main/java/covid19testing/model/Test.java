@@ -8,7 +8,7 @@ import java.util.UUID;
 @Entity
 public class Test {
 
-    private boolean result;
+    //private boolean result;
     private int fever;
     private Date date;
     private Time time;
@@ -18,14 +18,17 @@ public class Test {
 
 	@Enumerated(EnumType.STRING)
         private Status status;
+	
+	@Enumerated(EnumType.STRING)
+        private Result result;
 
-    public boolean getResult() {
+    /*public boolean getResult() {
         return this.result;
     }
 
     public void setResult(boolean result) {
         this.result = result;
-    }
+    }*/
 
     public int getFever() {
         return this.fever;
