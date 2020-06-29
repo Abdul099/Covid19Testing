@@ -4,10 +4,10 @@ import covid19testing.dto.PatientDto;
 import covid19testing.model.Patient;
 import covid19testing.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class PatientController {
@@ -20,17 +20,32 @@ public class PatientController {
                 p.getProvince(), p.getInsuranceNumber(), p.getAge(), p.getTravel(), p.getPreCondition(), p.getMedication());
         return convertToDto(patient);
     }
-    @PostMapping(value = {"/patients/{insuranceNumber}", "/patients/{insuranceNumber}/"})
-    public PatientDto createPatient(@PathVariable("insuranceNumber") String insuranceNumber) throws IllegalArgumentException, IllegalAccessException {
-        // @formatter:on
-        Patient patient = patientService.createPatient(insuranceNumber);
-        return convertToDto(patient);
+
+    @GetMapping(value = {"/patients/getAllPatients", "/patients/getAll/Patients/"})
+    public List<PatientDto> getAllPatients() {
+        List<PatientDto> list = new ArrayList<PatientDto>();
+        for (Patient p : patientService.getAllPatients()) {
+            list.add(convertToDto(p));
+        }
+        return list;
     }
 
+    @DeleteMapping(value = {"/patients/delete/{insuranceNumber}", "/patients/delete/{insuranceNumber}/"})
+    public void deletePatient(@PathVariable("insuranceNumber") String insuranceNumber) {
+        patientService.deletePatient(insuranceNumber);
+    }
 
-    private PatientDto convertToDto(Patient patient) {
-        PatientDto patientDto = new PatientDto(patient.getInsuranceNumber());
+    @PutMapping(value = {"/patients/update", "/patients/update/"} )
+    public PatientDto updatePatient(@RequestBody PatientDto p) throws IllegalAccessException {
+        Patient updatedPatient = patientService.updatePatient(p.getName(), p.getSurname(), p.getAddress(), p.getCity(),
+                p.getProvince(), p.getInsuranceNumber(), p.getAge(), p.getTravel(), p.getPreCondition(), p.getMedication());
+        return convertToDto(updatedPatient);
+    }
+
+    private PatientDto convertToDto(Patient p) {
+        PatientDto patientDto = new PatientDto(p.getName(), p.getSurname(), p.getAddress(), p.getCity(),
+                p.getProvince(), p.getInsuranceNumber(), p.getAge(), p.getTravel(), p.getPreCondition(), p.getMedication());
+
         return patientDto;
     }
-
 }
