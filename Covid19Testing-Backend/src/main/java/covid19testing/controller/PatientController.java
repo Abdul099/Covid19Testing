@@ -21,7 +21,7 @@ public class PatientController {
         return convertToDto(patient);
     }
 
-    @GetMapping(value = {"/patients/getAllPatients", "/patients/getAll/Patients/"})
+    @GetMapping(value = {"/patients/getAllPatients", "/patients/getAllPatients/"})
     public List<PatientDto> getAllPatients() {
         List<PatientDto> list = new ArrayList<PatientDto>();
         for (Patient p : patientService.getAllPatients()) {

@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Service
 public class AppointmentService {
@@ -26,14 +29,36 @@ public class AppointmentService {
     TestService testService;
 
     @Transactional
-    public Appointment createAppointment(Date date, Time time, boolean available) {
+    public Appointment createAppointment(Date date, Time time) {
         Appointment newAppointment = new Appointment();
         newAppointment.setDate(date);
         newAppointment.setTime(time);
         newAppointment.setAppointmentID();
-        newAppointment.setAvailable(available);
+        newAppointment.setAvailable(true);
         appointmentRepository.save(newAppointment);
         return newAppointment;
+    }
+    @Transactional
+    public Appointment getPatientByAppointmentID(String id){
+        Appointment appointment = appointmentRepository.findAppointmentByAppointmentID(id);
+        return appointment;
+    }
+
+    @Transactional
+    public Appointment cancelAppointmentForPatient(String appointmentID){
+        Appointment apt = appointmentRepository.findAppointmentByAppointmentID(appointmentID);
+        if(apt == null){
+            throw new IllegalArgumentException("Appointment is null!");
+        }
+        apt.setappointmentPatient(null);
+        apt.setAvailable(true);
+        appointmentRepository.save(apt);
+        return apt;
+    }
+
+    @Transactional
+    public List<Appointment> getAllAppointments() {
+        return new ArrayList<Appointment>((Collection<? extends Appointment>) appointmentRepository.findAll());
     }
 
     @Transactional
@@ -77,7 +102,8 @@ public class AppointmentService {
     }
 
     @Transactional
-    public void assignAppointmentToTestCenter(TestCenter center, Appointment appointment) {
+    public void assignAppointmentToTestCenter(String centerName, Appointment appointment) {
+        TestCenter center = testCenterRepository.findTestCenterByName(centerName);
         if (center == null) {
             throw new IllegalArgumentException("Test Center does not exist!");
         }
