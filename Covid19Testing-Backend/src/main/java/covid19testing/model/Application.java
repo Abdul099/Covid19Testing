@@ -104,7 +104,7 @@ public class Application {
         this.otherSymptoms = otherSymptoms;
     }
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     public Patient getApplicant() {
         return applicant;
     }

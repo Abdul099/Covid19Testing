@@ -165,7 +165,7 @@ public class PatientService {
         return tests;
     }
 
-    //TODO: make a getAllTestsfor
+    //TODO: make a getAllTestsfor city or province
     //TODO: patient
     ////////////////private methods
 

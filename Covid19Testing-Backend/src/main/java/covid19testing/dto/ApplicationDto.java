@@ -8,10 +8,10 @@ import javax.persistence.Enumerated;
 public class ApplicationDto {
     private double fever;
     private boolean cough;
-    private boolean result;
     private boolean shortnessBreath;
     private String otherSymptoms;
-    private String patientName;
+    private boolean result;
+    private String patientInsuranceNumber;
     private String applicationID;
     private Tiredness tiredness;
     private SoreThroat soreThroat;
@@ -23,14 +23,14 @@ public class ApplicationDto {
     }
 
     public ApplicationDto(double fever, boolean cough, boolean shortnessBreath, String otherSymptoms,
-                          boolean result, String patientName, String applicationID, Tiredness tiredness,
+                          boolean result, String patientInsuranceNumber, String applicationID, Tiredness tiredness,
                           SoreThroat soreThroat, Aches aches, ChestPain chestPain, Status status){
         this.fever = fever;
         this.cough = cough;
         this.shortnessBreath = shortnessBreath;
         this.otherSymptoms = otherSymptoms;
         this.result = result;
-        this.patientName = patientName;
+        this.patientInsuranceNumber = patientInsuranceNumber;
         this.applicationID = applicationID;
         this.tiredness = tiredness;
         this.soreThroat = soreThroat;
@@ -63,12 +63,12 @@ public class ApplicationDto {
         this.otherSymptoms = otherSymptoms;
     }
 
-    public String getPatientName() {
-        return patientName;
+    public String getPatientInsuranceNumber() {
+        return patientInsuranceNumber;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setPatientInsuranceNumber(String patientInsuranceNumber) {
+        this.patientInsuranceNumber = patientInsuranceNumber;
     }
 
     public boolean isCough() {

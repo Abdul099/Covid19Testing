@@ -14,6 +14,7 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
+    //TODO: Add get all applications per patient and all appointments
     @PostMapping(value = {"/patients/create", "/patients/create/"})
     public PatientDto createPatient(@RequestBody PatientDto p) throws IllegalAccessException {
         Patient patient = patientService.createPatient(p.getName(), p.getSurname(), p.getAddress(), p.getCity(),
