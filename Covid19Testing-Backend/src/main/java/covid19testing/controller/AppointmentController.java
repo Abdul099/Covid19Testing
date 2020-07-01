@@ -1,11 +1,14 @@
 package covid19testing.controller;
 
+import covid19testing.dto.ApplicationDto;
 import covid19testing.dto.AppointmentDto;
 import covid19testing.dto.PatientDto;
+import covid19testing.model.Application;
 import covid19testing.model.Appointment;
 import covid19testing.model.Patient;
 import covid19testing.service.AppointmentService;
 import covid19testing.service.PatientService;
+import covid19testing.service.TestCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +23,8 @@ public class AppointmentController {
     AppointmentService appointmentService;
     @Autowired
     PatientService patientService;
+    @Autowired
+    TestCenterService testCenterService;
 
     @PostMapping(value = {"/appointments/create", "/appointments/create/"})
     public AppointmentDto createAppointment(@RequestParam Date date, @RequestParam Time time, @RequestParam String centerName) {
@@ -46,6 +51,24 @@ public class AppointmentController {
         List<AppointmentDto> list = new ArrayList<>();
         for (Appointment apt : appointmentService.getAllAppointments()) {
             list.add(convertToDto(apt));
+        }
+        return list;
+    }
+
+    @GetMapping(value = {"/appointments/getAppointmentsForPatient/{insuranceNumber}", "/appointments/getAppointmentsForPatient/{insuranceNumber}/"})
+    public List<AppointmentDto> getAppointmentsForPatient(@PathVariable ("insuranceNumber") String insuranceNumber){
+        List<AppointmentDto> list = new ArrayList<>();
+        for(Appointment app: patientService.getPatientByInsuranceNumber(insuranceNumber).getAppointments()){
+            list.add(convertToDto(app));
+        }
+        return list;
+    }
+
+    @GetMapping(value = {"/appointments/getAppointmentsForCenter/{centerName}", "/appointments/getAppointmentsForCenter/{centerName}/"})
+    public List<AppointmentDto> getAppointmentsForCenter(@PathVariable ("centerName") String centerName){
+        List<AppointmentDto> list = new ArrayList<>();
+        for(Appointment app: testCenterService.getTestCenterByCenterName(centerName).getAppointments()){
+            list.add(convertToDto(app));
         }
         return list;
     }

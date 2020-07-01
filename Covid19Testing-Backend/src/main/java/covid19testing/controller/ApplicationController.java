@@ -37,10 +37,19 @@ public class ApplicationController {
         return convertToDto(app);
     }
 
-    @GetMapping(value = {"/applications/getAllApplications", "/applications/getAllApplications"})
+    @GetMapping(value = {"/applications/getAllApplications", "/applications/getAllApplications/"})
     public List<ApplicationDto> getAllApplications(){
         List<ApplicationDto> list = new ArrayList<>();
         for (Application app : applicationService.getAllApplications()) {
+            list.add(convertToDto(app));
+        }
+        return list;
+    }
+
+    @GetMapping({"/applications/getApplicationsForPatient/{insuranceNumber}", "/applications/getApplicationsForPatient/{insuranceNumber}/"})
+    public List<ApplicationDto> getApplicationsForPatient(@PathVariable ("insuranceNumber") String insuranceNumber){
+        List<ApplicationDto> list = new ArrayList<>();
+        for(Application app: patientService.getPatientByInsuranceNumber(insuranceNumber).getApplications()){
             list.add(convertToDto(app));
         }
         return list;

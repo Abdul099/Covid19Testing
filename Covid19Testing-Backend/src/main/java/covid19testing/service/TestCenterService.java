@@ -10,6 +10,7 @@ import covid19testing.model.TestCenter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Temporal;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,26 @@ public class TestCenterService {
         }
         testCenterRepository.deleteTestCenterByName(name);
     }
+
+    @Transactional
+    public TestCenter getTestCenterByCenterName(String name){
+        return testCenterRepository.findTestCenterByName(name);
+    }
+
+    @Transactional
+    public List<Appointment> getAllAppointmentsForCenter(TestCenter center) {
+        if (center == null) {
+            throw new IllegalArgumentException("TestCenter Cannot be null!");
+        }
+        List<Appointment> appointments = new ArrayList<>();
+        for (Appointment a : appointmentRepository.findAll()) {
+            if (a.getLocation().getName().equals(center.getName())) {
+                appointments.add(a);
+            }
+        }
+        return appointments;
+    }
+
     @Transactional
     public TestCenter updateTestCenter(String name, String address, String city, String province){
         TestCenter center = testCenterRepository.findTestCenterByName(name);
