@@ -25,6 +25,10 @@ public class TestCenterService {
 
     @Transactional
     public TestCenter createTestCenter(String name, String address, String city, String province) {
+        TestCenter old = testCenterRepository.findTestCenterByName(name);
+        if(old != null){
+            throw new IllegalArgumentException("TestCenter Already Exists!");
+        }
         TestCenter center = new TestCenter();
         center.setAddress(address);
         center.setCity(city);

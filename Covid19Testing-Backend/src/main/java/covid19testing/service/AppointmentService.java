@@ -39,7 +39,7 @@ public class AppointmentService {
         return newAppointment;
     }
     @Transactional
-    public Appointment getPatientByAppointmentID(String id){
+    public Appointment getAppointmentByAppointmentID(String id){
         Appointment appointment = appointmentRepository.findAppointmentByAppointmentID(id);
         return appointment;
     }
@@ -94,10 +94,11 @@ public class AppointmentService {
         }
 
         if (!appointment.isAvailable()) {
-            throw new IllegalArgumentException("Appointment already booked");
+           throw new IllegalArgumentException("Appointment already booked");
         }
         //TODO: create a test object for the patient (once beyza finishes testService)
         appointment.setappointmentPatient(patient);
+        appointment.setAvailable(false);
         appointmentRepository.save(appointment);
     }
 
@@ -105,7 +106,7 @@ public class AppointmentService {
     public void assignAppointmentToTestCenter(String centerName, Appointment appointment) {
         TestCenter center = testCenterRepository.findTestCenterByName(centerName);
         if (center == null) {
-            throw new IllegalArgumentException("Test Center does not exist!");
+            //throw new IllegalArgumentException("Test Center does not exist!");
         }
         if (appointment == null) {
             throw new IllegalArgumentException("Appointment does not exist!");

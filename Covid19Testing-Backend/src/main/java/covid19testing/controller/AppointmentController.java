@@ -36,7 +36,7 @@ public class AppointmentController {
 
     @PutMapping(value = {"/appointments/cancel/{appointmentID}", "/appointments/cancel/{appointmentID}/"})
     public AppointmentDto cancelAppointmentForPatient(@PathVariable("appointmentID") String appointmentID){
-        Appointment apt = appointmentService.getPatientByAppointmentID(appointmentID);
+        Appointment apt = appointmentService.getAppointmentByAppointmentID(appointmentID);
         appointmentService.cancelAppointmentForPatient(appointmentID);
         return convertToDto(apt);
     }
@@ -52,28 +52,29 @@ public class AppointmentController {
 
     @PutMapping(value = {"/appointments/assignCenter", "/appointments/assignCenter/"})
     public AppointmentDto assignTestCenter(@RequestParam String appointmentID, @RequestParam String centerName){
-        Appointment apt = appointmentService.getPatientByAppointmentID(appointmentID);
+        Appointment apt = appointmentService.getAppointmentByAppointmentID(appointmentID);
         appointmentService.assignAppointmentToTestCenter(centerName, apt);
         return convertToDto(apt);
     }
 
     @PutMapping(value = {"/appointments/bookPatient", "/appointments/bookPatient/"})
     public AppointmentDto bookPatient(@RequestParam String appointmentID, @RequestParam String patientInsuranceNumber){
-        Appointment apt = appointmentService.getPatientByAppointmentID(appointmentID);
+        Appointment apt = appointmentService.getAppointmentByAppointmentID(appointmentID);
         Patient p = patientService.getPatientByInsuranceNumber(patientInsuranceNumber);
         appointmentService.bookAppointmentForPatient(p, apt);
         return convertToDto(apt);
     }
-//    private Date date;
-//    private Time time;
-//    private String patientInsuranceNumber;
-//    private String testCenterName;
-//    private String appointmentID;
-//    public boolean available;
 
     private AppointmentDto convertToDto(Appointment a) {
-        AppointmentDto appointmentDto = new AppointmentDto(a.getDate(), a.getTime(), a.getappointmentPatient().getInsuranceNumber(),
-                a.getLocation().getName(), a.getAppointmentID(), a.isAvailable());
+        AppointmentDto appointmentDto;
+        if(a.getappointmentPatient() == null){
+            appointmentDto = new AppointmentDto(a.getDate(), a.getTime(), null,
+                    a.getLocation().getName(), a.getAppointmentID(), a.isAvailable());
+        }
+        else{
+            appointmentDto = new AppointmentDto(a.getDate(), a.getTime(), a.getappointmentPatient().getInsuranceNumber(),
+                    a.getLocation().getName(), a.getAppointmentID(), a.isAvailable());
+        }
         return appointmentDto;
     }
 }

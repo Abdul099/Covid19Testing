@@ -33,7 +33,7 @@ public class Appointment {
         this.time = time;
     }
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     public Patient getappointmentPatient() {
         return appointmentPatient;
     }
@@ -42,7 +42,7 @@ public class Appointment {
         this.appointmentPatient = patient;
     }
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     public TestCenter getLocation() {
         return location;
     }
