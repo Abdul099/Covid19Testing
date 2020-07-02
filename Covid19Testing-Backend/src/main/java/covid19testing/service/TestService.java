@@ -5,9 +5,7 @@ package covid19testing.service;
 import covid19testing.dao.PatientRepository;
 import covid19testing.dao.TestCenterRepository;
 import covid19testing.dao.TestRepository;
-import covid19testing.model.Patient;
-import covid19testing.model.TestCenter;
-import covid19testing.model.Test;
+import covid19testing.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
