@@ -33,8 +33,8 @@ public class TestService {
 		newTest.setDate(date);
 		newTest.setTime(time);
 		newTest.setTestID();
-//		newTest.setResult();
-//		newTest.setStatus();
+		newTest.setResult(Result.Null);
+		newTest.setStatus(Status.Assigned);
 		testRepository.save(newTest);
 		return newTest;
 	}
@@ -49,47 +49,47 @@ public class TestService {
 	}
 
 	@Transactional
-	public Test updateTest(Date date, Time time, String testID) {
+	public Test updateTest(Date date, Time time, String testID, Status status, Result result) {
 		Test test = testRepository.findTestByTestID(testID);
 		if (test == null) {
 			throw new IllegalArgumentException("Test with ID: " + testID + " does not exist");
 		}
 		test.setDate(date);
 		test.setTime(time);
-//		test.setStatus(status);
-//		test.setResult(result);
+		test.setStatus(status);
+		test.setResult(result);
 		testRepository.save(test);
 		return test;
 	}
 
-//	@Transactional
-//	public Test getAllTests() {
-//		List<Test> allTests = new ArrayList<>();
-//		for (Test t : testRepository.findAll()) {
-//			tests.add(t);
-//		}
-//		return allTests;
-//	}
-//
-//	@Transactional
-//	public Test getPositiveTests() {
-//		List<Test> positiveTests = new ArrayList<>();
-//		for (Test t : testRepository.findAll()) {
-//			if (t.getResult() == "Positive") {
-//				positiveTests.add(t);
-//			}
-//		}
-//		return positiveTests.length;
-//	}
-//
-//	@Transactional
-//	public Test getNegativeTests() {
-//		List<Test> negativeTests = new ArrayList<>();
-//		for (Test t : testRepository.findAll()) {
-//			if (t.getResult() == "Negative") {
-//				negativeTests.add(t);
-//			}
-//		}
-//		return negativeTests.length();
-//	}
+	@Transactional
+	public List<Test> getAllTests() {
+		List<Test> allTests = new ArrayList<>();
+		for (Test t : testRepository.findAll()) {
+			tests.add(t);
+		}
+		return allTests;
+	}
+
+	@Transactional
+	public int getPositiveTests() {
+		List<Test> positiveTests = new ArrayList<>();
+		for (Test t : testRepository.findAll()) {
+			if (t.getResult().equals(Result.Positive) {
+				positiveTests.add(t);
+			}
+		}
+		return positiveTests.size;
+	}
+
+	@Transactional
+	public int getNegativeTests() {
+		List<Test> negativeTests = new ArrayList<>();
+		for (Test t : testRepository.findAll()) {
+			if (t.getResult().equals(Result.Negative) {
+				negativeTests.add(t);
+			}
+		}
+		return negativeTests.size;
+	}
 }
