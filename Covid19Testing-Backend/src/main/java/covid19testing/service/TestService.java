@@ -31,7 +31,7 @@ public class TestService {
 		newTest.setDate(date);
 		newTest.setTime(time);
 		newTest.setTestID();
-		newTest.setResult(Result.Null);
+		newTest.setResult(null);
 		newTest.setStatus(Status.Assigned);
 		testRepository.save(newTest);
 		return newTest;
@@ -60,34 +60,34 @@ public class TestService {
 		return test;
 	}
 
-	@Transactional
-	public List<Test> getAllTests() {
-		List<Test> allTests = new ArrayList<>();
-		for (Test t : testRepository.findAll()) {
-			tests.add(t);
-		}
-		return allTests;
-	}
+//	@Transactional
+//	public List<Test> getAllTests() {
+//		List<Test> allTests = new ArrayList<>();
+//		for (Test t : testRepository.findAll()) {
+//			tests.add(t);
+//		}
+//		return allTests;
+//	}
 
-	@Transactional
-	public int getPositiveTests() {
-		List<Test> positiveTests = new ArrayList<>();
-		for (Test t : testRepository.findAll()) {
-			if (t.getResult().equals(Result.Positive) {
-				positiveTests.add(t);
-			}
-		}
-		return positiveTests.size;
-	}
-
-	@Transactional
-	public int getNegativeTests() {
-		List<Test> negativeTests = new ArrayList<>();
-		for (Test t : testRepository.findAll()) {
-			if (t.getResult().equals(Result.Negative) {
-				negativeTests.add(t);
-			}
-		}
-		return negativeTests.size;
-	}
+//	@Transactional
+//	public int getPositiveTests() {
+//		List<Test> positiveTests = new ArrayList<>();
+//		for (Test t : testRepository.findAll()) {
+//			if (t.getResult().equals(Result.Positive) {
+//				positiveTests.add(t);
+//			}
+//		}
+//		return positiveTests.size;
+//	}
+//
+//	@Transactional
+//	public int getNegativeTests() {
+//		List<Test> negativeTests = new ArrayList<>();
+//		for (Test t : testRepository.findAll()) {
+//			if (t.getResult().equals(Result.Negative) {
+//				negativeTests.add(t);
+//			}
+//		}
+//		return negativeTests.size;
+//	}
 }
