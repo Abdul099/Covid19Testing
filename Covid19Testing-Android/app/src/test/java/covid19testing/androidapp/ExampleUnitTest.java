@@ -1,4 +1,4 @@
-package android.covid19testing;
+package covid19testing.androidapp;
 
 import org.junit.Test;
 
