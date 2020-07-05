@@ -2,6 +2,7 @@ package covid19testing.androidapp;
 
         import androidx.appcompat.app.AppCompatActivity;
 
+        import android.os.AsyncTask;
         import android.os.Bundle;
         import android.util.Log;
         import android.view.View;
@@ -41,74 +42,81 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                URL url = null;
-                try {
-                    url = new URL(backendEndpoint);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();// timeouts is important
-                    connection.setConnectTimeout(CONNECTION_TIMEOUT);
-                    connection.setRequestMethod("POST");
-                    connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                    connection.setRequestProperty("Accept","application/json");
-                    connection.setDoInput(true);
-                    connection.setDoOutput(true);
-                    //connection.setRequestProperty("Content-length", Integer.toString(data.getBytes().length));
+                AsyncTask asyncTask = new AsyncTask() {
+                    @Override
+                    protected Object doInBackground(Object[] objects) {
+                        URL url = null;
+                        try {
+                            url = new URL(backendEndpoint);
+                            HttpURLConnection connection = (HttpURLConnection) url.openConnection();// timeouts is important
+                            connection.setConnectTimeout(CONNECTION_TIMEOUT);
+                            connection.setRequestMethod("POST");
+                            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+                            connection.setRequestProperty("Accept","application/json");
+                            connection.setDoInput(true);
+                            connection.setDoOutput(true);
+                            //connection.setRequestProperty("Content-length", Integer.toString(data.getBytes().length));
 
-                    //setting the json body
-                    JSONObject patientDto = new JSONObject();
-                    String patientName = ((EditText) findViewById(R.id.patientName)).getText().toString();
-                    String patientSurname = ((EditText) findViewById(R.id.patientSurname)).getText().toString();
-                    String patientAddress = ((EditText) findViewById(R.id.patientAddress)).getText().toString();
-                    String patientCity = ((EditText) findViewById(R.id.patientCity)).getText().toString();
-                    String patientProvince = ((EditText) findViewById(R.id.patientProvince)).getText().toString();
-                    String patientInsuranceNumber = ((EditText) findViewById(R.id.patientInsuranceNumber)).getText().toString();
-                    int patientAge = Integer.parseInt(((EditText) findViewById(R.id.patientAge)).getText().toString());
-                    String patientTravel = ((EditText) findViewById(R.id.patientTravelHistory)).getText().toString();
-                    String patientPrecondition = ((EditText) findViewById(R.id.patientPrecondition)).getText().toString();
-                    String patientMedication = ((EditText) findViewById(R.id.patientMedication)).getText().toString();
-                    patientDto.put("name", patientName);
-                    patientDto.put("surname", patientSurname);
-                    patientDto.put("address", patientAddress);
-                    patientDto.put("city", patientCity);
-                    patientDto.put("province", patientProvince);
-                    patientDto.put("insuranceNumber", patientInsuranceNumber);
-                    patientDto.put("age", patientAge);
-                    patientDto.put("travel", patientTravel);
-                    patientDto.put("precondition", patientPrecondition);
-                    patientDto.put("medication", patientMedication);
-                    Log.i("JSON", patientDto.toString());
-                    String data = patientDto.toString();
+                            //setting the json body
+                            JSONObject patientDto = new JSONObject();
+                            String patientName = ((EditText) findViewById(R.id.patientName)).getText().toString();
+                            String patientSurname = ((EditText) findViewById(R.id.patientSurname)).getText().toString();
+                            String patientAddress = ((EditText) findViewById(R.id.patientAddress)).getText().toString();
+                            String patientCity = ((EditText) findViewById(R.id.patientCity)).getText().toString();
+                            String patientProvince = ((EditText) findViewById(R.id.patientProvince)).getText().toString();
+                            String patientInsuranceNumber = ((EditText) findViewById(R.id.patientInsuranceNumber)).getText().toString();
+                            int patientAge = Integer.parseInt(((EditText) findViewById(R.id.patientAge)).getText().toString());
+                            String patientTravel = ((EditText) findViewById(R.id.patientTravelHistory)).getText().toString();
+                            String patientPrecondition = ((EditText) findViewById(R.id.patientPrecondition)).getText().toString();
+                            String patientMedication = ((EditText) findViewById(R.id.patientMedication)).getText().toString();
+                            patientDto.put("name", patientName);
+                            patientDto.put("surname", patientSurname);
+                            patientDto.put("address", patientAddress);
+                            patientDto.put("city", patientCity);
+                            patientDto.put("province", patientProvince);
+                            patientDto.put("insuranceNumber", patientInsuranceNumber);
+                            patientDto.put("age", patientAge);
+                            patientDto.put("travel", patientTravel);
+                            patientDto.put("preCondition", patientPrecondition);
+                            patientDto.put("medication", patientMedication);
+                            Log.i("JSON", patientDto.toString());
+                            String data = patientDto.toString();
 
-                    DataOutputStream requestStream = new DataOutputStream(connection.getOutputStream());
-                    requestStream.writeBytes(data);
-                    requestStream.flush();
-                    requestStream.close();
+                            DataOutputStream requestStream = new DataOutputStream(connection.getOutputStream());
+                            requestStream.writeBytes(data);
+                            requestStream.flush();
+                            requestStream.close();
 
-                    int responseCode = connection.getResponseCode();
-                    if (responseCode != HttpURLConnection.HTTP_OK) {
-                        // handle the error.
-                        Log.d(TAG, "" + responseCode);
-                    }
+                            int responseCode = connection.getResponseCode();
+                            if (responseCode != HttpURLConnection.HTTP_OK) {
+                                // handle the error.
+                                Log.d(TAG, "" + responseCode);
+                            }
 
-                    BufferedReader responseStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String response = "";
-                    String oneLine;
-                    while ((oneLine = responseStream.readLine()) != null) {
-                        response += oneLine;
+                            BufferedReader responseStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                            String response = "";
+                            String oneLine;
+                            while ((oneLine = responseStream.readLine()) != null) {
+                                response += oneLine;
+                            }
+                            Log.d(TAG, response);
+                            // do whatever with the response.
+                            JSONObject jsonResponse = null;
+                            try {
+                                jsonResponse = new JSONObject(response);
+                            } catch (JSONException e) {
+                            }
+                            if (jsonResponse != null) {
+                                jsonResponse.getJSONObject("menu").getJSONArray("id");
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            //Log.d(TAG, e.getMessage());
+                        }
+                        return null;
                     }
-                    Log.d(TAG, response);
-                    // do whatever with the response.
-                    JSONObject jsonResponse = null;
-                    try {
-                        jsonResponse = new JSONObject(response);
-                    } catch (JSONException e) {
-                    }
-                    if (jsonResponse != null) {
-                        jsonResponse.getJSONObject("menu").getJSONArray("id");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    //Log.d(TAG, e.getMessage());
-                }
+                }.execute();
+
             }
         });
 
