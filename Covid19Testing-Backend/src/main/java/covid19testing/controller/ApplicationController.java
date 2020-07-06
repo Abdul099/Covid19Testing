@@ -28,7 +28,7 @@ public class ApplicationController {
         Application a = applicationService.createApplication(fever, cough, shortnessBreath, otherSymptoms, aches, chestPain, tiredness, soreThroat);
         Patient p = patientService.getPatientByInsuranceNumber(patientInsuranceNumber);
         Application newApp = applicationService.addPatientToApplication(a, p);
-        return convertToDto(a);
+        return convertToDto(a);//TODO: newapp
     }
 
     @GetMapping(value = {"/applications/getApplicationByApplicationID/{applicationID}", "/applications/getApplicationByApplicationID/{applicationID}"})
