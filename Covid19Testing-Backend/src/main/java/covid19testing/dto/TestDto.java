@@ -1,7 +1,8 @@
 package covid19testing.dto;
 
-import covid19testing.model.*;
+//add attributes
 
+import covid19testing.model.*;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.sql.Date;
@@ -15,6 +16,9 @@ public class TestDto {
     private String patientInsuranceNo;
     private String testCenterName;
     private String testID;
+    private boolean result;
+    private Status status;
+
 
     public TestDto() {
     }
